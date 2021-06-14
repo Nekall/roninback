@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :badges, through: :users_badges
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Privatemessaging'
   has_many :received_messages, foreign_key: 'recipient_id', class_name: 'Privatemessaging'
+  has_many :appointment_mentor, foreign_key: 'mentor_id', class_name: 'Appointment'
+  has_many :appointment_disciple, foreign_key: 'disciple_id', class_name: 'Appointment'
 
 
 end
