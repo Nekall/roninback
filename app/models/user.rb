@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  after_create :welcome_send
+  
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
 
   devise :database_authenticatable,
          :jwt_authenticatable,
@@ -10,5 +15,6 @@ class User < ApplicationRecord
   has_many :badges, through: :users_badges
   has_many :sent_messages, foreign_key: 'sender_id', class_name: 'Privatemessaging'
   has_many :received_messages, foreign_key: 'recipient_id', class_name: 'Privatemessaging'
+
 
 end

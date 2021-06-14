@@ -10,15 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_131919) do
+ActiveRecord::Schema.define(version: 2021_06_14_152250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "privatemessagings", force: :cascade do |t|
+    t.bigint "recipient_id"
+    t.bigint "sender_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipient_id"], name: "index_privatemessagings_on_recipient_id"
+    t.index ["sender_id"], name: "index_privatemessagings_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +49,15 @@ ActiveRecord::Schema.define(version: 2021_06_14_131919) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_badges", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_users_badges_on_badge_id"
+    t.index ["user_id"], name: "index_users_badges_on_user_id"
+  end
+
+  add_foreign_key "users_badges", "badges"
+  add_foreign_key "users_badges", "users"
 end
