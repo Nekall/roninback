@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+
+  resources :users_badges
+  devise_for :users,
+             controllers: {
+                 sessions: 'users/sessions',
+                 registrations: 'users/registrations'
+             }
+
   resources :badges
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
 end
