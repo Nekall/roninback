@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  resources :users_badges
+  
   devise_for :users,
              controllers: {
                  sessions: 'users/sessions',
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
              }
 
   resources :badges
-
+  resources :users_badges
+  resources :privatemessagings
 
 end
