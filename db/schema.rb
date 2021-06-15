@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 2021_06_15_114649) do
   create_table "resources_technologies", id: false, force: :cascade do |t|
     t.bigint "resource_id", null: false
     t.bigint "technology_id", null: false
+    t.index ["resource_id", "technology_id"], name: "index_resources_technologies_on_resource_id_and_technology_id"
+    t.index ["technology_id", "resource_id"], name: "index_resources_technologies_on_technology_id_and_resource_id"
   end
 
   create_table "technologies", force: :cascade do |t|

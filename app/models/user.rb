@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   after_create :welcome_send
-  
+
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
@@ -10,6 +10,7 @@ class User < ApplicationRecord
          :registerable,
          jwt_revocation_strategy: JwtDenylist
 
+  has_many :resources
   has_many :users_technologies
   has_many :technologies, through: :users_technologies
   has_many :users_badges
@@ -18,6 +19,5 @@ class User < ApplicationRecord
   has_many :received_messages, foreign_key: 'recipient_id', class_name: 'Privatemessaging'
   has_many :appointment_mentor, foreign_key: 'mentor_id', class_name: 'Appointment'
   has_many :appointment_disciple, foreign_key: 'disciple_id', class_name: 'Appointment'
-
 
 end
