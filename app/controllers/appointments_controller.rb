@@ -13,7 +13,7 @@ class AppointmentsController < ApplicationController
     render json: @appointment
   end
 
-  # POST /privatemessagings
+  # POST /appointments
   def create
     @appointment = Appointment.new(appointment_params)
 
@@ -46,6 +46,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.fetch(:appointment, {})
+      params.require(:appointment).permit(:user_1_id, :user_2_id, :title, :date)
     end
 end
