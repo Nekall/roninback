@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_114649) do
+ActiveRecord::Schema.define(version: 2021_06_15_131046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,13 @@ ActiveRecord::Schema.define(version: 2021_06_15_114649) do
     t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
-  create_table "resources_technologies", id: false, force: :cascade do |t|
+  create_table "resources_technologies", force: :cascade do |t|
     t.bigint "resource_id", null: false
     t.bigint "technology_id", null: false
-    t.index ["resource_id", "technology_id"], name: "index_resources_technologies_on_resource_id_and_technology_id"
-    t.index ["technology_id", "resource_id"], name: "index_resources_technologies_on_technology_id_and_resource_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_resources_technologies_on_resource_id"
+    t.index ["technology_id"], name: "index_resources_technologies_on_technology_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -107,6 +109,8 @@ ActiveRecord::Schema.define(version: 2021_06_15_114649) do
   end
 
   add_foreign_key "resources", "users"
+  add_foreign_key "resources_technologies", "resources"
+  add_foreign_key "resources_technologies", "technologies"
   add_foreign_key "users_badges", "badges"
   add_foreign_key "users_badges", "users"
   add_foreign_key "users_technologies", "technologies"
