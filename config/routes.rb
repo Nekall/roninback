@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   resources :users_technologies
   resources :technologies
+  resources :ressources
+
   devise_for :users,
              controllers: {
                  sessions: 'users/sessions',
