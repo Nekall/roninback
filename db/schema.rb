@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_06_15_094817) do
+ActiveRecord::Schema.define(version: 2021_06_15_114649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,21 +48,25 @@ ActiveRecord::Schema.define(version: 2021_06_15_094817) do
     t.index ["sender_id"], name: "index_privatemessagings_on_sender_id"
   end
 
-<<<<<<< HEAD
-  create_table "technologies", force: :cascade do |t|
-    t.string "name"
-    t.string "img"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-=======
-  create_table "ressources", force: :cascade do |t|
+  create_table "resources", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_ressources_on_user_id"
->>>>>>> develop
+    t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
+  create_table "resources_technologies", id: false, force: :cascade do |t|
+    t.bigint "resource_id", null: false
+    t.bigint "technology_id", null: false
+  end
+
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -92,7 +95,6 @@ ActiveRecord::Schema.define(version: 2021_06_15_094817) do
     t.index ["user_id"], name: "index_users_badges_on_user_id"
   end
 
-<<<<<<< HEAD
   create_table "users_technologies", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "technology_id", null: false
@@ -102,9 +104,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_094817) do
     t.index ["user_id"], name: "index_users_technologies_on_user_id"
   end
 
-=======
-  add_foreign_key "ressources", "users"
->>>>>>> develop
+  add_foreign_key "resources", "users"
   add_foreign_key "users_badges", "badges"
   add_foreign_key "users_badges", "users"
   add_foreign_key "users_technologies", "technologies"

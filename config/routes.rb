@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :resources
   resources :users_technologies
   resources :technologies
-  resources :ressources
 
   devise_for :users,
              controllers: {
