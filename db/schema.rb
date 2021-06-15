@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_223356) do
+ActiveRecord::Schema.define(version: 2021_06_15_093958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(version: 2021_06_14_223356) do
     t.index ["sender_id"], name: "index_privatemessagings_on_sender_id"
   end
 
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,6 +81,17 @@ ActiveRecord::Schema.define(version: 2021_06_14_223356) do
     t.index ["user_id"], name: "index_users_badges_on_user_id"
   end
 
+  create_table "users_technologies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "technology_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["technology_id"], name: "index_users_technologies_on_technology_id"
+    t.index ["user_id"], name: "index_users_technologies_on_user_id"
+  end
+
   add_foreign_key "users_badges", "badges"
   add_foreign_key "users_badges", "users"
+  add_foreign_key "users_technologies", "technologies"
+  add_foreign_key "users_technologies", "users"
 end
