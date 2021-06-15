@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :badges
   resources :users_badges
-  resources :privatemessagings
+  resources :privatemessagings do
+    resources :messages
+  end
 
 end
