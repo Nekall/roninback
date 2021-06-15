@@ -10,12 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_211330) do
+
+ActiveRecord::Schema.define(version: 2021_06_15_131046) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
+
     t.time "date"
     t.string "title"
     t.bigint "mentor_id"
@@ -49,6 +52,31 @@ ActiveRecord::Schema.define(version: 2021_06_14_211330) do
     t.index ["sender_id"], name: "index_privatemessagings_on_sender_id"
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
+  create_table "resources_technologies", force: :cascade do |t|
+    t.bigint "resource_id", null: false
+    t.bigint "technology_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_resources_technologies_on_resource_id"
+    t.index ["technology_id"], name: "index_resources_technologies_on_technology_id"
+  end
+
+  create_table "technologies", force: :cascade do |t|
+    t.string "name"
+    t.string "img"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,6 +85,11 @@ ActiveRecord::Schema.define(version: 2021_06_14_211330) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "mentor_level", default: 0, null: false
+    t.boolean "is_admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -70,6 +103,20 @@ ActiveRecord::Schema.define(version: 2021_06_14_211330) do
     t.index ["user_id"], name: "index_users_badges_on_user_id"
   end
 
+  create_table "users_technologies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "technology_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["technology_id"], name: "index_users_technologies_on_technology_id"
+    t.index ["user_id"], name: "index_users_technologies_on_user_id"
+  end
+
+  add_foreign_key "resources", "users"
+  add_foreign_key "resources_technologies", "resources"
+  add_foreign_key "resources_technologies", "technologies"
   add_foreign_key "users_badges", "badges"
   add_foreign_key "users_badges", "users"
+  add_foreign_key "users_technologies", "technologies"
+  add_foreign_key "users_technologies", "users"
 end
