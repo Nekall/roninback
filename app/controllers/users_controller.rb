@@ -19,11 +19,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
-    render json: @user
+    render json: @user, include: [:badges, :technologies]
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :firstname, :lastname, :username)
   end
 
 end
