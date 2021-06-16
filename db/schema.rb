@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_131046) do
   create_table "resources", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.text "lead"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
