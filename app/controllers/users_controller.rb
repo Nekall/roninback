@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render json: @user, include: [:badges, :technologies]
+    render json: @user, include: [:badges, :technologies, :resources]
 
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
-    render json: @user, include: [:badges, :technologies]
+    render json: @user, include: [:badges, :technologies, :resources]
   end
 
   def user_params
