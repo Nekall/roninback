@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :resources_technologies
   resources :resources
   resources :users_technologies
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
                  registrations: 'users/registrations'
              }
 
+  resources :users
   resources :badges
   resources :users_badges
   resources :appointments
