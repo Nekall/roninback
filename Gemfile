@@ -19,7 +19,8 @@ gem 'devise-jwt', '~> 0.8.1'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 # This gem is a port of Perl's Data::Faker library that generates fake data.
 gem 'faker', '~> 2.18'
-
+# Load environment variables from .env into ENV
+gem 'dotenv-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
