@@ -5,20 +5,20 @@ class ResourcesController < ApplicationController
   def index
     @resources = Resource.all
 
-    render json: @resources
+    render json: @resources, include: [:user]
   end
 
   # GET /resources/1
   def show
-    render json: @resource
+    render json: @resource, include: [:user]
   end
 
   # POST /resources
   def create
     @resource = Resource.new(resource_params)
-
+    @resource.user = current_user
     if @resource.save
-      render json: @resource, status: :created, location: @resource
+      render json: @resource, status: :created, location: @resource, include: [:user]
     else
       render json: @resource.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ResourcesController < ApplicationController
   # PATCH/PUT /resources/1
   def update
     if @resource.update(resource_params)
-      render json: @resource
+      render json: @resource, include: [:user]
     else
       render json: @resource.errors, status: :unprocessable_entity
     end

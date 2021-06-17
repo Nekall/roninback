@@ -5,12 +5,12 @@ class TechnologiesController < ApplicationController
   def index
     @technologies = Technology.all
 
-    render json: @technologies
+    render json: @technologies, include: [:user]
   end
 
   # GET /technologies/1
   def show
-    render json: @technology
+    render json: @technology, include: [:user]
   end
 
   # POST /technologies
@@ -27,7 +27,7 @@ class TechnologiesController < ApplicationController
   # PATCH/PUT /technologies/1
   def update
     if @technology.update(technology_params)
-      render json: @technology
+      render json: @technology, include: [:user]
     else
       render json: @technology.errors, status: :unprocessable_entity
     end
