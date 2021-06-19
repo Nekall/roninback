@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_failed
-    render json: { message: "Il y a eu un problème." }
+    render json: { message: "Il y a eu un problème." }, status: :unauthorized
   end
 
 end
