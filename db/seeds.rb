@@ -9,16 +9,25 @@ end
 
 puts "Cleaned ✓"
 
+User.create(
+  username: "Admin",
+  firstname: "マスター",
+  lastname: "アドミニストレーター",
+  email: "admin@admin",
+  password: "admin",
+  mentor_level: 666,
+  is_admin: true
+)
+
 10.times do
   User.create(
     username: Faker::Internet.username,
     firstname: Faker::Name.first_name,
     lastname: Faker::Name.last_name,
     email: Faker::Internet.email,
-    password: 'password'
+    password: "password"
   )
 end
-
 
 10.times do
   Resource.create(
