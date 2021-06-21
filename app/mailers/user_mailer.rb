@@ -1,6 +1,8 @@
 class UserMailer < ApplicationMailer
   default from: 'visualdai@gmail.com'
 
+  layout "mailer"
+
   def welcome_email(user)
     @user = user
     @url = 'http://ronincode.fr/login'
