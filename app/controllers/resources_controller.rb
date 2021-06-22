@@ -10,7 +10,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1
   def show
-    render json: @resource, include: [:user]
+    render json: @resource, include: [:user, :technologies]
   end
 
   # POST /resources
