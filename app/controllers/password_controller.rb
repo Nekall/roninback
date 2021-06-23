@@ -2,11 +2,9 @@ class PasswordController < ApplicationController
 
   def forgot
     if params[:email].blank?
-      return render json: { message: 'Email not present'}
+      return render json: { message: 'Email non present'}
     end
-
     user = User.find_by(email: params[:email])
-
     if user.present?
       user.generate_password_token!
       UserMailer.forgot_password_email(user).deliver_now
@@ -19,7 +17,6 @@ class PasswordController < ApplicationController
   def reset
     token = params[:token].to_s
     user = User.find_by(reset_password_token: token)
-
     if user.present? && user.password_token_valid?
       if user.reset_password!(params[:password])
         render json: user, status: :ok
