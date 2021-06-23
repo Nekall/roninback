@@ -16,6 +16,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointment.user_1 = current_user
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
@@ -46,6 +47,6 @@ class AppointmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def appointment_params
-      params.require(:appointment).permit(:user_1_id, :user_2_id, :title, :date)
+      params.require(:appointment).permit(:user_2_id, :title, :date, :time)
     end
 end
