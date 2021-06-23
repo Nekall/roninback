@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(user_params)
     render json: @user
   end
