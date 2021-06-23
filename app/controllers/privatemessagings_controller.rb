@@ -51,6 +51,6 @@ class PrivatemessagingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def privatemessaging_params
-      params.permit(:sender_id, :recipient_id)
+      params.require(:privatemessaging).permit(:sender_id, :recipient_id)
     end
 end
