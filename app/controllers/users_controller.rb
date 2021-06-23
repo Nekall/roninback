@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     render json: @user, include: [:badges, :technologies, :resources]
   end
 
+  def create
+    UserMailer.welcome_email(@user).deliver_now
+  end  
+
   def update
     @user = current_user
     @user.update(user_params)
