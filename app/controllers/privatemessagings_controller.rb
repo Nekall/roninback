@@ -3,10 +3,7 @@ class PrivatemessagingsController < ApplicationController
 
   # GET /privatemessagings
   def index
-    #@users = User.all
     @privatemessagings = Privatemessaging.all
-
-    #render json: @users
     render json: @privatemessagings
   end
 
