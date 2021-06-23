@@ -19,7 +19,7 @@ class PrivatemessagingsController < ApplicationController
     if Privatemessaging.between(params[:sender_id], params[:recipient_id]).present?
       @Privatemessaging = Privatemessaging.between(params[:sender_id], params[:recipient_id]).first
     else
-      @Privatemessaging = Privatemessaging.create!(Privatemessaging_params)
+      @Privatemessaging = Privatemessaging.create!(privatemessaging_params)
     end
 
     if @privatemessaging.save
