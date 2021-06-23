@@ -7,6 +7,6 @@ class Privatemessaging < ApplicationRecord
   validates_uniqueness_of :sender_id, :scope => :recipient_id
 
   scope :between, -> (sender_id, recipient_id) do
-    where("(privatemessaging.sender_id = ? AND   privatemessaging.recipient_id =?) OR (privatemessaging.sender_id = ? AND privatemessaging.recipient_id =?)", sender_id, recipient_id, recipient_id, sender_id)
+    where("(privatemessagings.sender_id = ? AND   privatemessagings.recipient_id =?) OR (privatemessagings.sender_id = ? AND privatemessagings.recipient_id =?)", sender_id, recipient_id, recipient_id, sender_id)
   end
 end
