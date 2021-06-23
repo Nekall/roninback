@@ -1,6 +1,5 @@
 class PrivatemessagingsController < ApplicationController
   before_action :set_privatemessaging, only: [:show, :update, :destroy]
-  skip_before_action :verify_authenticity_token
 
   # GET /privatemessagings
   def index
