@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @users = User.all
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
     user.destroy
   end
 
+ private
 
   def user_params
     params.require(:user).permit(:email, :password, :firstname, :lastname, :username)

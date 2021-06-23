@@ -3,8 +3,14 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url = 'http://ronincode.fr/login'
-    mail(to: @user.email, subject: 'Bienvenue chez 浪漫コード RoninCode !')
+    @url = 'http://localhost:3000/se-connecter'
+    mail(to: @user.email, subject: 'Bienvenue chez RoninCode !')
+  end
+
+  def forgot_password_email(user)
+    @user = user
+    @url  = 'http://localhost:3000/reinitialisation/mot-de-passe/'
+    mail(to: @user.email, subject: 'Réinitialisation du mot de passe pour ROninCode')
   end
 
 end
