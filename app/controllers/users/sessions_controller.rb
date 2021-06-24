@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
       render json: { message: "Échec de la connexion." }, status: :unauthorized
     else
       @user = current_user
-      render json: { message: "Vous êtes connecté.", id: @user.id }, status: :ok
+      render json: { message: "Vous êtes connecté.", id: @user.id, is_admin: @user.is_admin }, status: :ok
     end
   end
 

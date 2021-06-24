@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :password, only: [:index]
+  post 'password/forgot', to: 'password#forgot'
+  post 'password/reset', to: 'password#reset'
+
 end

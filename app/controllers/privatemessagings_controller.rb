@@ -3,10 +3,7 @@ class PrivatemessagingsController < ApplicationController
 
   # GET /privatemessagings
   def index
-    #@users = User.all
     @privatemessagings = Privatemessaging.all
-
-    #render json: @users
     render json: @privatemessagings
   end
 
@@ -22,7 +19,7 @@ class PrivatemessagingsController < ApplicationController
     if Privatemessaging.between(params[:sender_id], params[:recipient_id]).present?
       @Privatemessaging = Privatemessaging.between(params[:sender_id], params[:recipient_id]).first
     else
-      @Privatemessaging = Privatemessaging.create!(Privatemessaging_params)
+      @Privatemessaging = Privatemessaging.create!(privatemessaging_params)
     end
 
     if @privatemessaging.save
@@ -54,6 +51,6 @@ class PrivatemessagingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def privatemessaging_params
-      params.permit(:sender_id, :recipient_id)
+      params.require(:privatemessaging).permit(:sender_id, :recipient_id)
     end
 end
