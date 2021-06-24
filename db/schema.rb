@@ -16,15 +16,16 @@ ActiveRecord::Schema.define(version: 2021_06_24_104818) do
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.time "start_date"
+    t.string "date"
     t.string "title"
-    t.bigint "mentor_id"
-    t.bigint "disciple_id"
+    t.bigint "user_1_id"
+    t.bigint "user_2_id"
+    t.boolean "confirmed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "appointment_time"
-    t.index ["disciple_id"], name: "index_appointments_on_disciple_id"
-    t.index ["mentor_id"], name: "index_appointments_on_mentor_id"
+    t.index ["user_1_id"], name: "index_appointments_on_user_1_id"
+    t.index ["user_2_id"], name: "index_appointments_on_user_2_id"
   end
 
   create_table "badges", force: :cascade do |t|
@@ -52,12 +53,10 @@ ActiveRecord::Schema.define(version: 2021_06_24_104818) do
   end
 
   create_table "privatemessagings", force: :cascade do |t|
-    t.bigint "recipient_id"
-    t.bigint "sender_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipient_id"], name: "index_privatemessagings_on_recipient_id"
-    t.index ["sender_id"], name: "index_privatemessagings_on_sender_id"
   end
 
   create_table "resources", force: :cascade do |t|
