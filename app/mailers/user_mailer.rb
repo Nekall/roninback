@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'visualdai@gmail.com'
+  default from: 'ronincode.noreply@gmail.com'
 
   layout "mailer"
 
