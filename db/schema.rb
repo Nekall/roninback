@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_111617) do
     t.boolean "validated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "time"
+    t.string "appointment_time"
     t.index ["user_1_id"], name: "index_appointments_on_user_1_id"
     t.index ["user_2_id"], name: "index_appointments_on_user_2_id"
   end
