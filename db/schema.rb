@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_15_131046) do
+ActiveRecord::Schema.define(version: 2021_06_24_104818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.time "start_date"
+    t.time "date"
     t.string "title"
     t.bigint "mentor_id"
     t.bigint "disciple_id"
+    t.boolean "validated"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["disciple_id"], name: "index_appointments_on_disciple_id"
@@ -80,7 +81,6 @@ ActiveRecord::Schema.define(version: 2021_06_15_131046) do
 
   create_table "technologies", force: :cascade do |t|
     t.string "name"
-    t.string "img"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_06_15_131046) do
     t.string "lastname"
     t.integer "mentor_level", default: 0, null: false
     t.boolean "is_admin", default: false, null: false
+    t.boolean "is_mentor", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

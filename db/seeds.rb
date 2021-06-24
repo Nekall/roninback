@@ -61,7 +61,14 @@ end
 5.times do
   Technology.create(
     name: ['Python', 'Java', 'JavaScript', 'TypeScript', 'Swift', 'Ruby', 'Rails', 'C', 'Angular', 'React', 'C#', 'Ruby on Rails', 'Angular', 'Vue.js', 'Symfony', 'Meteor', 'Bootstrap', 'Tailwind', 'React Native'].sample,
-    img: 'LogoDeLaTechno'
+    
+  )
+end
+
+5.times do
+  UsersTechnology.create(
+    user_id: User.all.sample.id,
+    technology_id: Technology.all.sample.id
   )
 end
 
