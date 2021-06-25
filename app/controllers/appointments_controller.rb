@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   def index
     @appointments = Appointment.where("user_1_id" == current_user || "user_1_id" == current_user )
-    render json: @appointments
+    render json: @appointments, include: [:user_1, :user_2]
   end
 
   # GET /appointments/1

@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :technologies, through: :users_technologies
   has_many :users_badges
   has_many :badges, through: :users_badges
+  has_many :appointments, foreign_key: 'user_1_id', class_name: "Appointments"
+  has_many :appointments, foreign_key: 'user_2_id', class_name: "Appointments"
 
   private
 
