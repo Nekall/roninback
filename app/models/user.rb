@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_many :users_badges
   has_many :badges, through: :users_badges
 
-  private
-
   def set_username
     self.username = "Ronin" + Faker::Number.number(digits: 5).to_s
     puts self.username
