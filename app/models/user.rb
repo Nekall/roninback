@@ -15,15 +15,13 @@ class User < ApplicationRecord
   has_many :appointments, foreign_key: 'user_1_id', class_name: "Appointments"
   has_many :appointments, foreign_key: 'user_2_id', class_name: "Appointments"
 
-  private
-
   def set_username
     self.username = "Ronin" + Faker::Number.number(digits: 5).to_s
     puts self.username
   end
 
   def welcome_send
-    #UserMailer.welcome_email(self).deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 
   def generate_password_token!
