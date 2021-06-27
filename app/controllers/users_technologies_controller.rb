@@ -36,6 +36,7 @@ class UsersTechnologiesController < ApplicationController
   # DELETE /users_technologies/1
   def destroy
     @users_technology.destroy
+    render json: { message: "Suppression effectuée."}, status: :ok
   end
 
   private
